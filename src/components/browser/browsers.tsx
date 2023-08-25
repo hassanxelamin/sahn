@@ -62,7 +62,7 @@ const Browsers = () => {
                     </Draggable>
                 ))}
             </div>
-            {/* {browsers.map((browser, index) => (
+            {browsers.map((browser, index) => (
                 <Draggable 
                     key={index} 
                     bounds="#main-bounds" 
@@ -91,7 +91,7 @@ const Browsers = () => {
                 >
                     <SingleBrowser bgColor="#000" secondaryColor="#3D3E44" />
                 </div>
-            </Draggable> */}
+            </Draggable>
         </div>
     );
 }
