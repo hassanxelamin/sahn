@@ -144,7 +144,7 @@ export default function Home() {
         <div className='w-screen h-screen relative'>
           <Topbar />
           {/* <Browsers /> */}
-          {/* <Taskbar /> */}
+          <Taskbar />
         </div>
 
     {/* <div id="shader-doodle-container" className="fixed inset-0 z-50 bg-black">
