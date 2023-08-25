@@ -11,6 +11,7 @@ const Topbar = () => {
     // Fetch location based on IP address using ipstack
     const fetchLocation = async () => {
       try {
+        
         const API_KEY = process.env.NEXT_PUBLIC_IPSTACK_API_KEY;
         const response = await fetch(`http://api.ipstack.com/check?access_key=${API_KEY}`);
         const data = await response.json();
@@ -42,16 +43,16 @@ const Topbar = () => {
   }, []);
 
   return (
-    <div className='w-full h-[30px] absolute top-0 left-1/2 transform -translate-x-1/2 bg-custom-blue backdrop-blur backdrop-brightness font-styrene text-white text-[1rem] sm:text-[1.2rem]'>
-        <div className='w-full h-full flex justify-between items-center px-[20px]'>
-            <div className='font-bold'>🎈SAHN</div>
-            <div className='flex gap-x-[0.8rem] sm:gap-x-[1.5rem]'>
-                <div>{location}</div>
-                <div>{dateTime.date}</div>
-                <div>{dateTime.time}</div>
-            </div>
+    <div className='w-full h-[30px] bg-custom-blue backdrop-blur backdrop-brightness font-styrene text-white text-[1rem] sm:text-[1.2rem] mb-[20px]'>
+    <div className='w-full h-full flex justify-between items-center px-[20px]'>
+        <div className='font-bold'>🎈SAHN</div>
+        <div className='flex gap-x-[0.8rem] sm:gap-x-[1.5rem]'>
+            <div>{location}</div>
+            <div>{dateTime.date}</div>
+            <div>{dateTime.time}</div>
         </div>
     </div>
+</div>
   )
 }
 

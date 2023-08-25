@@ -7,19 +7,40 @@ import Chat from '@/src/components/chat/chat';
 
 export const draggableItems = [
     {
-        positionleft: '557px',
-        positiontop: '200px',
-        iconSrc: '/icons/folder.svg',
-        iconAlt: 'folder icon',
-        labelText: 'ABOUT'
+        positionright: '200px',
+        positionbottom: '350px',
+        iconSrc: '/icons/cd.png',
+        iconAlt: 'cd icon',
+        labelText: 'WAYWF?'
     },
     {
-        positionright: '357px',
-        positionbottom: '200px',
+        positionleft: '557px',
+        positiontop: '100px',
         iconSrc: '/icons/folder.svg',
         iconAlt: 'folder icon',
-        labelText: 'MUSIC'
-    }
+        labelText: 'CONTACT'
+    },
+    {
+        positionright: '600px',
+        positionbottom: '200px',
+        iconSrc: '/icons/imessage.png',
+        iconAlt: 'imessage icon',
+        labelText: 'Message'
+    },
+    {
+        positionleft: '200px',
+        positionbottom: '350px',
+        iconSrc: '/icons/folder.svg',
+        iconAlt: 'folder icon',
+        labelText: 'VIDEOS'
+    },
+    {
+        positionright: '100px',
+        positionbottom: '200px',
+        iconSrc: '/icons/trash.png',
+        iconAlt: 'trash icon',
+        labelText: ''
+    },
     // ... add other draggable items as needed
 ];
 

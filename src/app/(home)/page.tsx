@@ -128,7 +128,6 @@ export default function Home() {
 //     return () => observer.disconnect();
 // }, []);
 
-
   
   return (
     <main className="h-screen w-screen bg-neutral-200 relative">
@@ -141,9 +140,9 @@ export default function Home() {
         )
       }
       </AnimatePresence> */}
-        <div className='w-screen h-screen relative'>
+        <div className='w-screen h-screen relative overflow-hidden'>
           <Topbar />
-          {/* <Browsers /> */}
+          <Browsers />
           <Taskbar />
         </div>
 
