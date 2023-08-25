@@ -7,62 +7,62 @@ import Taskbar from '@/src/components/taskbar/taskbar';
 import Preloader from '@/src/components/preloader/preloader';
 import { AnimatePresence } from 'framer-motion';
 import Script from 'next/script';
-import 'shader-doodle';
+// import 'shader-doodle';
 import Topbar from '@/src/components/top-bar/top-bar';
 
 
-const shaderCode = `
+// const shaderCode = `
 
-#ifdef GL_FRAGMENT_PRECISION_HIGH
-precision highp float;
-#else
-precision mediump float;
-#endif
+// #ifdef GL_FRAGMENT_PRECISION_HIGH
+// precision highp float;
+// #else
+// precision mediump float;
+// #endif
 
-#define time iTime
-#define resolution ( iResolution.xy )
-#define PI 3.14159265
+// #define time iTime
+// #define resolution ( iResolution.xy )
+// #define PI 3.14159265
 
-uniform sampler2D u_texture0;
-uniform float staticStrength;
+// uniform sampler2D u_texture0;
+// uniform float staticStrength;
 
-float noise(vec2 P) {
-    vec2 Pi = floor(P);
-    vec2 Pf = P - Pi;
-    vec4 Pt = vec4(Pi.xy, Pi.xy + 1.0);
-    Pt = Pt - floor(Pt * (1.0 / 71.0)) * 71.0;
-    Pt += vec2(26.0, 161.0).xyxy;
-    Pt *= Pt;
-    Pt = Pt.xzxz * Pt.yyww;
-    vec4 hash = fract(Pt * (1.0 / 951.135664));
-    vec2 blend = Pf * Pf * Pf * (Pf * (Pf * 6.0 - 15.0) + 10.0);
-    vec4 blend2 = vec4(blend, vec2(1.0 - blend));
-    return dot(hash, blend2.zxzx * blend2.wwyy);
-}
+// float noise(vec2 P) {
+//     vec2 Pi = floor(P);
+//     vec2 Pf = P - Pi;
+//     vec4 Pt = vec4(Pi.xy, Pi.xy + 1.0);
+//     Pt = Pt - floor(Pt * (1.0 / 71.0)) * 71.0;
+//     Pt += vec2(26.0, 161.0).xyxy;
+//     Pt *= Pt;
+//     Pt = Pt.xzxz * Pt.yyww;
+//     vec4 hash = fract(Pt * (1.0 / 951.135664));
+//     vec2 blend = Pf * Pf * Pf * (Pf * (Pf * 6.0 - 15.0) + 10.0);
+//     vec4 blend2 = vec4(blend, vec2(1.0 - blend));
+//     return dot(hash, blend2.zxzx * blend2.wwyy);
+// }
 
-float rand(vec2 co) {
-    return fract(sin(dot(co, vec2(12.9898, 78.233))) * 43758.5453);
-}
+// float rand(vec2 co) {
+//     return fract(sin(dot(co, vec2(12.9898, 78.233))) * 43758.5453);
+// }
 
-vec3 tex2D(sampler2D tex, vec2 uv) {
-vec3 col = texture2D(tex, uv).xyz;
-if(abs(uv.x - 0.5) > 0.5) {
-    col = vec3(0.1);
-}
-return col;
-}
+// vec3 tex2D(sampler2D tex, vec2 uv) {
+// vec3 col = texture2D(tex, uv).xyz;
+// if(abs(uv.x - 0.5) > 0.5) {
+//     col = vec3(0.1);
+// }
+// return col;
+// }
 
-vec3 scanLine(float uv, float pixels, float opacity) {
-float intensity = (0.5 * sin(uv * pixels * PI * 2.) + 0.5) * 0.9 + 0.05;
-return vec3(pow(intensity, opacity));
-}
+// vec3 scanLine(float uv, float pixels, float opacity) {
+// float intensity = (0.5 * sin(uv * pixels * PI * 2.) + 0.5) * 0.9 + 0.05;
+// return vec3(pow(intensity, opacity));
+// }
 
-void main() {
-  vec2 uv = gl_FragCoord.xy / iResolution.xy;
-  vec3 col = texture2D(u_texture0, uv).xyz;
-  gl_FragColor = vec4(col, 1.0);
-}
-`;
+// void main() {
+//   vec2 uv = gl_FragCoord.xy / iResolution.xy;
+//   vec3 col = texture2D(u_texture0, uv).xyz;
+//   gl_FragColor = vec4(col, 1.0);
+// }
+// `;
 
 // bg-neutral-200
 export default function Home() {
