@@ -11,6 +11,14 @@ const Browsers = () => {
     const [activeBrowser, setActiveBrowser] = useState<number | null>(null);
     const [selectedItem, setSelectedItem] = useState<number | null>(null);
     const containerRef = useRef<HTMLDivElement>(null);
+    const [currentBrowsers, setCurrentBrowsers] = useState(browsers);
+
+    const toggleBrowserVisibility = (index: number) => {
+        const updatedBrowsers = [...currentBrowsers];
+        updatedBrowsers[index].isVisible = !updatedBrowsers[index].isVisible;
+        setCurrentBrowsers(updatedBrowsers);
+    }
+
 
     useEffect(() => {
         // This function will be triggered on every click in the document
@@ -32,37 +40,45 @@ const Browsers = () => {
     
     return (
         <div id="main-bounds" className="h-screen w-screen relative p-4">
-            <div ref={containerRef} className='flex'>
-                {draggableItems.map((item, index) => (
-                    <Draggable key={index} bounds="#main-bounds">
-                        <div 
-                            className={`cursor-grab w-full flex items-center justify-center flex-wrap gap-x-[20px] md:absolute md:h-auto md:w-auto`}
-                            style={{ 
-                                left: item.positionleft, 
-                                top: item.positiontop, 
-                                right: item.positionright, 
-                                bottom: item.positionbottom 
-                            }}
-                            onClick={(e) => {
-                                e.stopPropagation();  // Prevent the event from propagating to the document
-                                if (selectedItem === index) {
-                                    setSelectedItem(null);
-                                } else {
-                                    setSelectedItem(index);
-                                }
-                            }}
-                        >
-                            <FileIcon 
-                                iconSrc={item.iconSrc}
-                                iconAlt={item.iconAlt}
-                                labelText={item.labelText}
-                                selected={selectedItem === index}
-                            />
-                        </div>
-                    </Draggable>
-                ))}
+<div ref={containerRef} className='flex'>
+    {draggableItems.map((item, index) => (
+        <Draggable key={index} bounds="#main-bounds">
+            <div 
+                className={`cursor-grab w-full flex items-center justify-center flex-wrap gap-x-[20px] md:absolute md:h-auto md:w-auto`}
+                style={{ 
+                    left: item.positionleft, 
+                    top: item.positiontop, 
+                    right: item.positionright, 
+                    bottom: item.positionbottom 
+                }}
+                onDoubleClick={(e) => {
+                    e.stopPropagation();  // Prevent the event from propagating to the document
+                    
+                    // Only toggle the visibility if linkedBrowser is present and is a valid index
+                    if (typeof item.linkedBrowser === 'number') {
+                        toggleBrowserVisibility(item.linkedBrowser);  // Toggle the visibility of the linked browser
+                    }
+                
+                    if (selectedItem === index) {
+                        setSelectedItem(null);
+                    } else {
+                        setSelectedItem(index);
+                    }
+                }}
+            >
+                <FileIcon 
+                    iconSrc={item.iconSrc}
+                    iconAlt={item.iconAlt}
+                    labelText={item.labelText}
+                    selected={selectedItem === index}
+                />
             </div>
-            {browsers.map((browser, index) => (
+        </Draggable>
+    ))}
+</div>
+
+            {currentBrowsers.map((browser, index) => (
+                browser.isVisible && (
                 <Draggable 
                     key={index} 
                     bounds="#main-bounds" 
@@ -73,14 +89,15 @@ const Browsers = () => {
                         className={`absolute`} 
                         style={{ zIndex: activeBrowser === browser.zIndex ? 10 : 1, position: 'absolute', left: browser.positionleft, top: browser.positiontop, right: browser.positionright }}
                     >
-                        <Browser bgColor={browser.bgColor} secondaryColor={browser.secondaryColor} bHeight={browser.bHeight} bWidth={browser.bWidth} hHeight={browser.hHeight}>
+                        <Browser bgColor={browser.bgColor} secondaryColor={browser.secondaryColor} bHeight={browser.bHeight} bWidth={browser.bWidth} hHeight={browser.hHeight} toggleVisibility={() => toggleBrowserVisibility(index)}>
                             {browser.content}
                         </Browser>
                     </div>
                 </Draggable>
+                )
             ))}
 
-            <Draggable 
+            {/* <Draggable 
                 bounds="#main-bounds" 
                 handle=".drag-handle" 
                 onStart={() => setActiveBrowser(3)}
@@ -91,7 +108,7 @@ const Browsers = () => {
                 >
                     <SingleBrowser bgColor="#000" secondaryColor="#3D3E44" />
                 </div>
-            </Draggable>
+            </Draggable> */}
         </div>
     );
 }

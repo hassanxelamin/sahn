@@ -4,7 +4,8 @@ import NextImage from 'next/image';
 interface PropTypes {
     iconSrc: string;
     iconAlt: string;
-    labelText?: string;  // make this optional
+    labelText: string;
+    selected: boolean;
 }
 
 const FileIcon = ({ 
@@ -29,7 +30,7 @@ const FileIcon = ({
                 />
             </div>
             {labelText && (  // only render this div if labelText is provided
-                <div className={`mt-[2px] text-[1.2rem] font-bold text-white rounded-[5px] px-[3px] py-[1px] ${selected ? 'bg-[#0063E1]' : ''}`}>
+                <div className={`mt-[2px] text-[1.4rem] font-bold text-white rounded-[5px] px-[3px] py-[1px] ${selected ? 'bg-[#0063E1]' : ''}`}>
                     {labelText}
                 </div>
             )}

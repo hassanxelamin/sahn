@@ -7,12 +7,10 @@ interface BrowserTypes {
     bWidth: string;
     bHeight: string;
     hHeight: string;
+    toggleVisibility: () => void;
 }
 
-const Browser = ({ bgColor, secondaryColor, children, bWidth, bHeight, hHeight }: BrowserTypes) => {
-  const [visible, setVisible] = useState(true);
-
-  if (!visible) return null;
+const Browser = ({ bgColor, secondaryColor, children, bWidth, bHeight, hHeight, toggleVisibility }: BrowserTypes) => {
 
   return (
       <div id="container" style={{ 
@@ -23,8 +21,8 @@ const Browser = ({ bgColor, secondaryColor, children, bWidth, bHeight, hHeight }
                           }} className={`rounded-[10px] border border-[#A5A5A5] flex-col justify-start items-start inline-flex overflow-hidden`}>
           <div style={{ backgroundColor: secondaryColor, height: hHeight}} className={`drag-handle w-full justify-start items-center inline-flex pl-[2rem] pr-[460px]`}>
               <div className={`flex items-start gap-[0.8rem] inline-flex`}>
-                  <div className={`w-[1.2rem] h-[1.2rem] bg-red-400 rounded-full cursor-pointer`} onClick={() => setVisible(false)}></div>
-                  <div className={`w-[1.2rem] h-[1.2rem] bg-amber-300 rounded-full cursor-pointer`} onClick={() => setVisible(false)}></div>
+                  <div className={`w-[1.2rem] h-[1.2rem] bg-red-400 rounded-full cursor-pointer`} onClick={toggleVisibility}></div>
+                  <div className={`w-[1.2rem] h-[1.2rem] bg-amber-300 rounded-full cursor-pointer`} onClick={toggleVisibility}></div>
                   <div className={`w-[1.2rem] h-[1.2rem] bg-green-400 rounded-full cursor-pointer`}></div>
               </div>
           </div>

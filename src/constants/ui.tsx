@@ -11,35 +11,38 @@ export const draggableItems = [
         positionbottom: '350px',
         iconSrc: '/icons/cd.png',
         iconAlt: 'cd icon',
-        labelText: 'WAYWF?'
+        labelText: 'WAYWF?',
+        linkedBrowser: 1
     },
     {
         positionleft: '557px',
         positiontop: '100px',
         iconSrc: '/icons/folder.svg',
         iconAlt: 'folder icon',
-        labelText: 'Contact'
+        labelText: 'Contact',
     },
     {
         positionright: '600px',
         positionbottom: '200px',
         iconSrc: '/icons/imessage.png',
         iconAlt: 'imessage icon',
-        labelText: 'Message'
+        labelText: 'Message',
+        linkedBrowser: 2
     },
     {
         positionleft: '200px',
         positionbottom: '350px',
         iconSrc: '/icons/folder.svg',
         iconAlt: 'folder icon',
-        labelText: 'Videos'
+        labelText: 'Videos',
+        linkedBrowser: 0
     },
     {
         positionright: '100px',
         positionbottom: '200px',
         iconSrc: '/icons/trash.png',
         iconAlt: 'trash icon',
-        labelText: ''
+        labelText: '',
     },
     // ... add other draggable items as needed
 ];
@@ -112,6 +115,7 @@ export const browsers = [
         bWidth: "845px", 
         bHeight: "480px",
         hHeight: "52px",
+        isVisible: true
     },
     // {
     //     positionleft: '257px',
@@ -143,6 +147,7 @@ export const browsers = [
         bWidth: "532px", 
         bHeight: "354px",
         hHeight: "52px",
+        isVisible: true
     },
     {
         positionright: '510px',
@@ -154,5 +159,6 @@ export const browsers = [
         bWidth: "532px", 
         bHeight: "354px",
         hHeight: "52px",
+        isVisible: true
     },
 ];
