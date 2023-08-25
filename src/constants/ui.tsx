@@ -1,7 +1,7 @@
 // draggableData.tsx
 
 import React from 'react';
-import VideoPlayer from '@/src/components/video-player/video-player';
+// import VideoPlayer from '@/src/components/video-player/video-player';
 import FileExplorer from '@/src/components/browser/file-explorer';
 import Chat from '@/src/components/chat/chat';
 

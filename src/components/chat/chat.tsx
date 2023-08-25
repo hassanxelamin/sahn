@@ -27,7 +27,7 @@ const Chat = () => {
   const [chatHistory, setChatHistory] = useState<{ label: string; answer?: string }[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setIsLoading(true);
