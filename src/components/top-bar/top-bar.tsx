@@ -11,7 +11,7 @@ const Topbar = () => {
     // Fetch location based on IP address using ipstack
     const fetchLocation = async () => {
       try {
-        const API_KEY = 'YOUR_IPSTACK_API_KEY'; // Replace with your API key
+        const API_KEY = process.env.NEXT_PUBLIC_IPSTACK_API_KEY;
         const response = await fetch(`http://api.ipstack.com/check?access_key=${API_KEY}`);
         const data = await response.json();
 
