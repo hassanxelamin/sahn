@@ -1,4 +1,12 @@
 import React, { ReactNode, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const fadeIn = {
+    initial: { opacity: 0, scale: 0.9 },
+    animate: { opacity: 1, scale: 1 },
+    exit: { opacity: 0, scale: 0.9 },
+    transition: { duration: 0.1 } // You can adjust the duration or use other transition properties
+  };
 
 interface BrowserTypes {
     bgColor: string;
@@ -13,7 +21,12 @@ interface BrowserTypes {
 const Browser = ({ bgColor, secondaryColor, children, bWidth, bHeight, hHeight, toggleVisibility }: BrowserTypes) => {
 
   return (
-      <div id="container" style={{ 
+      <motion.div 
+      initial={fadeIn.initial}
+      animate={fadeIn.animate}
+      exit={fadeIn.exit}
+      transition={fadeIn.transition}
+      id="container" style={{ 
                               backgroundColor: bgColor, 
                               boxShadow: '0px 16px 48px rgba(0, 0, 0, 0.3)', 
                               width: bWidth,
@@ -27,7 +40,7 @@ const Browser = ({ bgColor, secondaryColor, children, bWidth, bHeight, hHeight, 
               </div>
           </div>
         {children}
-      </div>
+      </motion.div>
   )
 }
 

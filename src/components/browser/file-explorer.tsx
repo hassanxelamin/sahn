@@ -16,31 +16,7 @@ const FileExplorer: React.FC = () => {
 
     return (
         <div className="flex w-full h-full">
-            <div className="w-1/3 bg-gray-100 border-r py-4">
-                <ul>
-                    {files.map(file => (
-                        <li 
-                            key={file.name} 
-                            className={`cursor-pointer p-4 ${selectedFile?.name === file.name ? 'bg-gray-200' : 'hover:bg-gray-200'}`}
-                            onClick={() => setSelectedFile(file)}
-                        >
-                            {file.name}
-                        </li>
-                    ))}
-                </ul>
-            </div>
-            <div className="w-full h-full">
-                {selectedFile && (
-                    <iframe
-                        className='w-full h-full'
-                        src={`https://www.youtube.com/embed/${selectedFile.videoId}?si=OPqpRWD1jfsgIlRv`}
-                        title="YouTube video player"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowFullScreen
-                    ></iframe>
-                )}
-            </div>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/kXcANgpSH0g?si=OPqpRWD1jfsgIlRv" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
         </div>
     )
 }

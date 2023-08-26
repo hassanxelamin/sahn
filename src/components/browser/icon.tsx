@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
 import NextImage from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const fadeIn = {
+    initial: { opacity: 0, scale: 0.9 },
+    animate: { opacity: 1, scale: 1 },
+    exit: { opacity: 0, scale: 0.9 },
+    transition: { duration: 0.1 } // You can adjust the duration or use other transition properties
+  };
 
 interface PropTypes {
     iconSrc: string;
@@ -19,7 +27,11 @@ const FileIcon = ({
     if (!visible) return null; 
 
     return (
-        <div className={`flex flex-col justify-center items-center font-sk font-bold cursor-grab`}>
+        <motion.div 
+        initial={fadeIn.initial}
+        animate={fadeIn.animate}
+        exit={fadeIn.exit} 
+        className={`flex flex-col justify-center items-center font-sk font-bold cursor-grab`}>
             <div className={`w-[83px] h-[80px] rounded-[7px] flex justify-center items-center ${selected ? 'bg-black bg-opacity-[0.05]' : 'hover:bg-black hover:bg-opacity-[0.05]'}`}>
                 <NextImage 
                     onDragStart={(e) => e.preventDefault()} 
@@ -34,7 +46,7 @@ const FileIcon = ({
                     {labelText}
                 </div>
             )}
-        </div>
+        </motion.div>
     )
 }
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 const Topbar = () => {
   const [location, setLocation] = useState('San Diego, CA');
@@ -43,9 +44,11 @@ const Topbar = () => {
   }, []);
 
   return (
-    <div className='w-full h-[30px] bg-custom-blue backdrop-blur backdrop-brightness font-styrene text-white text-[1rem] sm:text-[1.2rem] mb-[20px]'>
+    <div className='w-full h-[30px] bg-custom-blue backdrop-blur backdrop-brightness font-styrene text-white text-[1.2rem] sm:text-[1.2rem] mb-[20px]'>
     <div className='w-full h-full flex justify-between items-center px-[20px]'>
-        <div className='font-bold'>🎈SAHN</div>
+        <Link href='/'>
+          <div className='font-bold'>🎈SAHN</div>
+        </Link>
         <div className='flex gap-x-[0.8rem] sm:gap-x-[1.5rem]'>
             <div>{location}</div>
             <div>{dateTime.date}</div>

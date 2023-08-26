@@ -100,6 +100,10 @@
     font-display: swap;
 }
 
+.hidden-on-mobile {
+  display: none;
+}
+
 .backdrop-blur {
   backdrop-filter: blur(1rem);
 }

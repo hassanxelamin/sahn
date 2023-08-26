@@ -140,11 +140,15 @@ export default function Home() {
         )
       }
       </AnimatePresence> */}
-        <div className='w-screen h-screen relative overflow-hidden'>
-          <Topbar />
+      <div className='w-screen h-screen flex flex-col items-center justify-center sm:overflow-hidden overflow-x-hidden'>
+          <div className="w-full md:static sticky top-0 z-50">
+              <Topbar />
+          </div>
           <Browsers />
-          <Taskbar />
-        </div>
+          <div className='z-20' style={{ position: 'fixed', bottom: '0', left: '0', right: '0' }}>
+            <Taskbar />
+          </div>
+      </div>
 
     {/* <div id="shader-doodle-container" className="fixed inset-0 z-50 bg-black">
         <div>

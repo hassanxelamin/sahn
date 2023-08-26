@@ -59,7 +59,7 @@
 
 //   return (
 //     <div className="relative w-full" onClick={handleClick}>
-// <iframe width="560" height="315" src="https://www.youtube.com/embed/kXcANgpSH0g?si=OPqpRWD1jfsgIlRv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+//         <iframe width="560" height="315" src="https://www.youtube.com/embed/kXcANgpSH0g?si=OPqpRWD1jfsgIlRv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 //     </div>
 //   );
 // }

@@ -26,6 +26,7 @@ export const draggableItems = [
         positionbottom: '200px',
         iconSrc: '/icons/imessage.png',
         iconAlt: 'imessage icon',
+        link: '/message',
         labelText: 'Message',
         linkedBrowser: 2
     },
@@ -106,16 +107,22 @@ export const draggableItems = [
 
 export const browsers = [
     {
-        positionleft: '657px',
-        positiontop: '287px',
+        // positionright: '10px',
+        positiontop: '110px',
+        positionleft: '80px',
+        // positionbottom: '10px',
+        // positionrightxl: '600px',
+        positiontopxl: '10px',
+        positionleftxl: '10px',
+        // positionbottomxl: '600px',
         zIndex: 1,
         content: <FileExplorer />,
         bgColor: "#BFC2C8",
         secondaryColor: "#FFF",
-        bWidth: "845px", 
-        bHeight: "480px",
+        bWidth: "532px", 
+        bHeight: "354px",
         hHeight: "52px",
-        isVisible: true
+        isVisible: false
     },
     // {
     //     positionleft: '257px',
@@ -129,8 +136,14 @@ export const browsers = [
     //     hHeight: "52px",
     // },
     {
-        positionleft: '748px',
-        positiontop: '497px',
+        // positionright: '10px',
+        positiontop: '400px',
+        positionleft: '600px',
+        // positionbottom: '100px',
+        // positionrightxl: '600px',
+        positiontopxl: '400px',
+        positionleftxl: '150px',
+        // positionbottomxl: '600px',
         zIndex: 2,
         content: (
             <iframe 
@@ -147,11 +160,17 @@ export const browsers = [
         bWidth: "532px", 
         bHeight: "354px",
         hHeight: "52px",
-        isVisible: true
+        isVisible: false
     },
     {
-        positionright: '510px',
-        positiontop: '164px',
+        positionright: '100px',
+        positiontop: '90px',
+        // positionleft: '0px',
+        // positionbottom: '10px',
+        positionrightxl: '50px',
+        positiontopxl: '100px',
+        // positionleftxl: '600px',
+        // positionbottomxl: '600px',
         zIndex: 3,
         content: <Chat />,
         bgColor: "#000",
@@ -159,6 +178,7 @@ export const browsers = [
         bWidth: "532px", 
         bHeight: "354px",
         hHeight: "52px",
-        isVisible: true
+        isVisible: false,
+        showOnMobile: false,
     },
 ];

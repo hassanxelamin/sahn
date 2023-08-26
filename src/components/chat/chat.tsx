@@ -74,7 +74,7 @@ const Chat = () => {
   }, [chatHistory]);
 
   return (
-    <div className='w-full flex flex-col justify-center items-center text-[1.4rem]'>
+    <div className='w-full h-full flex flex-col justify-end items-center text-[1.4rem]'>
       <div className='w-[478px]'>
         <div className="mt-auto p-6 w-full h-full mx-auto rounded-xl shadow-md flex flex-col justify-end space-y-4 text-white font-inter">
           <div ref={containerRef} className="h-96 overflow-y-auto flex flex-col-reverse">

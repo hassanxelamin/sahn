@@ -14,7 +14,7 @@ const Taskbar = () => {
       ];
 
   return (
-    <div className='w-[330px] h-[65px] sm:w-[380px] sm:h-[65px] md:w-[440px] md:h-[70px] absolute bottom-0 left-1/2 transform -translate-x-1/2 rounded-tl-[18px] rounded-tr-[18px] bg-opacity-50 bg-white'>
+    <div className='w-[330px] h-[65px] sm:w-[380px] sm:h-[65px] md:w-[440px] md:h-[70px] absolute bottom-0 left-1/2 transform -translate-x-1/2 rounded-tl-[18px] rounded-tr-[18px] bg-opacity-50 bg-white z-50'>
         <div className='flex items-center justify-center w-full h-full space-x-[12px] sm:space-x-[15px]'>
             {icons.map(icon => (
                 <div 
