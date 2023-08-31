@@ -209,29 +209,44 @@ const Browsers = () => {
 
                 {/* Chat Window */}
                 {chatVisible && (
-                    <Draggable bounds="#main-bounds" handle=".drag-handle" >
-                        <div className={`${isMobile ? 'flex'  : isXL ? 'absolute top-1/4 left-1/4 transform -translate-x-1/2 -translate-y-1/2 z-50' : 'absolute top-1/4 left-1/3 transform -translate-x-1/2 -translate-y-1/2 z-50'}`}>
+                    isMobile ? 
+                    (<div className='flex'>
+                        <Chat setChatVisible={setChatVisible} />
+                    </div>)
+                    : 
+                    (<Draggable bounds="#main-bounds" handle=".drag-handle">
+                        <div className={isXL ? 'absolute top-1/4 left-1/4 transform -translate-x-1/2 -translate-y-1/2 z-50' : 'absolute top-1/4 left-1/3 transform -translate-x-1/2 -translate-y-1/2 z-50'}>
                             <Chat setChatVisible={setChatVisible} />
                         </div>
-                    </Draggable>
+                    </Draggable>)
                 )}
 
                 {/* Release Window */}
                 {releaseVisible && (
-                    <Draggable bounds="#main-bounds" handle=".drag-handle">
-                        <div className={`${isMobile ? 'flex'  : isXL ? 'absolute left-[25px]' : 'absolute left-[140px] top-[10px]'}`}>
+                    isMobile ? 
+                    (<div className='flex'>
+                        <Release setReleaseVisible={setReleaseVisible} />
+                    </div>)
+                    : 
+                    (<Draggable bounds="#main-bounds" handle=".drag-handle">
+                        <div className={isXL ? 'absolute left-[25px]' : 'absolute left-[140px] top-[10px]'}>
                             <Release setReleaseVisible={setReleaseVisible} />
                         </div>
-                    </Draggable>
+                    </Draggable>)
                 )}
 
                 {/* Video Window */}
                 {vidsVisible && (
-                    <Draggable bounds="#main-bounds" handle=".drag-handle">
-                        <div className={`${isMobile ? 'flex'  : isXL ? 'absolute right-[25px] bottom-[25px]' : 'absolute right-[140px] bottom-[25px]'}`}>
+                    isMobile ? 
+                    (<div className='flex'>
+                        <Vids setVidsVisible={setVidsVisible} />
+                    </div>)
+                    : 
+                    (<Draggable bounds="#main-bounds" handle=".drag-handle">
+                        <div className={isXL ? 'absolute right-[25px] bottom-[25px]' : 'absolute right-[140px] bottom-[25px]'}>
                             <Vids setVidsVisible={setVidsVisible} />
                         </div>
-                    </Draggable>
+                    </Draggable>)
                 )}
 
             </div>
