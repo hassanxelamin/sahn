@@ -239,7 +239,7 @@ const Browsers = () => {
                 {/* Video Window */}
                 {vidsVisible && (
                     isMobile ? 
-                    (<div className='flex'>
+                    (<div className='flex pb-[40px]'>
                         <Vids setVidsVisible={setVidsVisible} />
                     </div>)
                     : 

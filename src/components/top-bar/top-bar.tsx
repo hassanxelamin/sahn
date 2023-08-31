@@ -44,7 +44,7 @@ const Topbar = () => {
   }, []);
 
   return (
-    <div className='w-full h-[30px] bg-custom-blue backdrop-blur backdrop-brightness font-styrene text-white text-[1.2rem] sm:text-[1.2rem] mb-[20px]'>
+    <div className='w-full h-[30px] bg-custom-blue backdrop-blur backdrop-brightness font-styrene text-white text-[1.2rem] sm:text-[1.2rem]'>
     <div className='w-full h-full flex justify-between items-center px-[20px]'>
         <Link href='/'>
           <div className='font-bold'>🎈SAHN</div>

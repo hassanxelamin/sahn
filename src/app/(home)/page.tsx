@@ -7,9 +7,9 @@ import Topbar from '@/src/components/top-bar/top-bar';
 export default function Home() {
 
   return (
-    <main className="h-screen w-screen bg-neutral-200 relative">
+    <main className="h-screen w-screen bg-neutral-200 relative pb-[20px]">
       <div className='w-screen h-screen flex flex-col items-center justify-center sm:overflow-hidden overflow-x-hidden'>
-          <div className="w-full md:static sticky top-0 z-50">
+          <div className="w-full md:static sticky top-0 z-50 mb-[20px]">
               <Topbar />
           </div>
           <Browsers />
