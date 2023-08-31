@@ -9,7 +9,7 @@ const Taskbar = () => {
         { name: 'Instagram', src: '/icons/instagram.svg', link: 'https://www.instagram.com/whoissahn/'},
         { name: 'SoundCloud', src: '/icons/soundcloud.svg', link: 'https://soundcloud.com/sahnn'},
         { name: 'Spotify', src: '/icons/spotify.svg', link: 'https://open.spotify.com/artist/1FZ9KkusZYSO3saEkB9NMG?si=PMdtL7cfQVm-XFjpXPMVvg'},
-        { name: 'TikTok', src: '/icons/tiktok.svg', link: 'https://www.tiktok.com/@retoesfy'},
+        { name: 'TikTok', src: '/icons/tiktok.svg', link: 'https://www.tiktok.com/@whoissahn'},
         { name: 'YouTube', src: '/icons/youtube.svg', link: 'https://www.youtube.com/@sahnyoutube'},
       ];
 

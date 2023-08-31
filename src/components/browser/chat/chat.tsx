@@ -49,8 +49,10 @@ const Chat = ({ setChatVisible }: ChatProps) => {
     // ----------------- Hooks ----------------- //
 
     useEffect(() => {
-      sound.play();
-    }, [chatHistory]);
+      if (!isLoading) {
+        sound.play();
+      }
+    }, [chatHistory, isLoading]);
 
     // useEffect hook that simulates the process of the chatbot loading the first message upon component mounting/after 1 second.
     useEffect(() => {
@@ -205,15 +207,15 @@ const Chat = ({ setChatVisible }: ChatProps) => {
                           </div>
                         ))}
                         {isLoading && (
-                        <motion.div variants={container} initial="hidden" animate="visible" className="flex items-center justify-center p-[15px] w-[50px] bg-[#353635] bg-opacity-75 rounded-tl-[13px] rounded-tr-[13px] rounded-bl-[3px] rounded-br-[13px]">
-                            <div className="flex items-center justify-center w-full">
-                            <div className="flex items-center justify-center space-x-1">
-                                <span className="bg-white w-2 h-2 rounded-full"></span>
-                                <span className="bg-white w-2 h-2 rounded-full"></span>
-                                <span className="bg-white w-2 h-2 rounded-full"></span>
-                            </div>
-                            </div>
-                        </motion.div>
+                          <motion.div variants={container} initial="hidden" animate="visible" className="flex items-center justify-center p-[15px] w-[50px] bg-[#353635] bg-opacity-75 rounded-tl-[13px] rounded-tr-[13px] rounded-bl-[3px] rounded-br-[13px]">
+                              <div className="flex items-center justify-center w-full">
+                              <div className="flex items-center justify-center space-x-1">
+                                  <span className="bg-white w-2 h-2 rounded-full"></span>
+                                  <span className="bg-white w-2 h-2 rounded-full"></span>
+                                  <span className="bg-white w-2 h-2 rounded-full"></span>
+                              </div>
+                              </div>
+                          </motion.div>
                         )}
                     </div>
                       <form onSubmit={handleAnswer} className='flex justify-center relative w-full mt-[10px]'>
@@ -222,7 +224,7 @@ const Chat = ({ setChatVisible }: ChatProps) => {
                               type="text"
                               value={inputValue}   // Bind value to state
                               onChange={(e) => setInputValue(e.target.value)}   // Update state on input change
-                              className="focus:outline-none focus:ring-0 border rounded p-2 w-full h-[35px] rounded-full text-white text-[1.4rem] border border-[#767676] border-[1px] bg-transparent pl-5 pr-[50px]"
+                              className="focus:outline-none focus:ring-0 border rounded p-2 w-full h-[35px] rounded-full text-white text-[16px] border border-[#767676] border-[1px] bg-transparent pl-5 pr-[50px]"
                               placeholder="Type your answer..."
                               disabled={isLoading || currentIndex >= form.fields.length}
                               autoComplete="off"
