@@ -185,26 +185,25 @@ const Chat = ({ setChatVisible }: ChatProps) => {
 
         {/* chat ui */}
         <div className='w-full h-full flex flex-col justify-end items-center text-[1.4rem] overflow-y-auto'>
-            <div className='w-[478px]'>
+            <div className='w-full'>
                 <div className="mt-auto p-6 w-full h-full mx-auto rounded-xl shadow-md flex flex-col justify-end space-y-4 text-white font-inter">
-                <div ref={containerRef} className="h-full flex flex-col justify-between">
+                <div ref={containerRef} className="h-full w-full flex flex-col justify-between">
                     <div className='h-full'>
                     <div className="flex flex-col space-y-2">
-                    {chatHistory.map((chatItem, index) => (
-    <div key={index} className="flex flex-col space-y-2">
-        <motion.div variants={container} initial="hidden" animate="visible" className="flex items-center p-[15px] w-[246.44px] bg-[#353635] bg-opacity-75 rounded-tl-[13px] rounded-tr-[13px] rounded-bl-[3px] rounded-br-[13px] flex-wrap mt-[10px]">
-            {chatItem.label}
-        </motion.div>
-        <div className='flex items-center justify-end w-full pr-4'>
-            {chatItem.answer && (
-                <motion.div variants={container} initial="hidden" animate="visible" className="mr-2 text-right flex items-center justify-end p-[15px] w-[246.44px] bg-[#2E46E1] rounded-tl-[13px] rounded-tr-[13px] rounded-br-[3px] rounded-bl-[13px] flex-wrap mt-[10px] whitespace-normal flex-shrink-0">
-                    {chatItem.answer}
-                </motion.div>
-            )}
-        </div>
-    </div>
-))}
-
+                        {chatHistory.map((chatItem, index) => (
+                          <div key={index} className="flex flex-col space-y-2">
+                              <motion.div variants={container} initial="hidden" animate="visible" className="flex items-center p-[15px] w-[246.44px] bg-[#353635] bg-opacity-75 rounded-tl-[13px] rounded-tr-[13px] rounded-bl-[3px] rounded-br-[13px] flex-wrap mt-[10px]">
+                                  {chatItem.label}
+                              </motion.div>
+                              <div className='flex items-center justify-end w-full pr-4'>
+                                  {chatItem.answer && (
+                                      <motion.div variants={container} initial="hidden" animate="visible" className="mr-2 text-right flex items-center justify-end p-[15px] w-[246.44px] bg-[#2E46E1] rounded-tl-[13px] rounded-tr-[13px] rounded-br-[3px] rounded-bl-[13px] flex-wrap mt-[10px] whitespace-normal flex-shrink-0">
+                                          {chatItem.answer}
+                                      </motion.div>
+                                  )}
+                              </div>
+                          </div>
+                        ))}
                         {isLoading && (
                         <motion.div variants={container} initial="hidden" animate="visible" className="flex items-center justify-center p-[15px] w-[50px] bg-[#353635] bg-opacity-75 rounded-tl-[13px] rounded-tr-[13px] rounded-bl-[3px] rounded-br-[13px]">
                             <div className="flex items-center justify-center w-full">
@@ -217,7 +216,7 @@ const Chat = ({ setChatVisible }: ChatProps) => {
                         </motion.div>
                         )}
                     </div>
-                      <form onSubmit={handleAnswer} className='flex justify-center w-full relative mt-[10px]'>
+                      <form onSubmit={handleAnswer} className='flex justify-center relative w-full mt-[10px]'>
                           <input
                               name="answerInput"
                               type="text"
