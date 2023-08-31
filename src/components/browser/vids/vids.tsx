@@ -31,7 +31,7 @@ const Vids = ({ setVidsVisible }: ChatProps) => {
             </div>
         </div>
         <div className="flex w-full h-full">
-            <iframe width="560" height="315" src="https://www.youtube.com/watch?v=W7IV3qRl9sc&ab_channel=sahn" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/W7IV3qRl9sc?si=MTaPOZrgh-6RqTnj" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
         </div>  
     </motion.div>
   )
