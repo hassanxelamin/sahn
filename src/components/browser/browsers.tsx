@@ -3,54 +3,43 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import Draggable from 'react-draggable';
-import Browser from '@/src/components/browser/browser';
 import FileIcon from './icon';
-import { draggableItems, browsers } from '@/src/constants/ui';
-import Link from 'next/link';
-import Chat from '../chat/chat';
+import { draggableItems } from '@/src/constants/ui';
+import Chat from '@/src/components/browser/chat/chat';
+import Release from '@/src/components/browser/release/release';
+import Vids from '@/src/components/browser/vids/vids';
 
 const Browsers = () => {
     const [activeBrowser, setActiveBrowser] = useState<number | null>(null);
     const [selectedItem, setSelectedItem] = useState<number | null>(null);
     const containerRef = useRef<HTMLDivElement>(null);
-    const [currentBrowsers, setCurrentBrowsers] = useState(browsers);
-    // const smRef = useRef(null);
-    // const [isMobile, setIsMobile] = useState(false);  // To detect if it's mobile
-    const [isChatVisible, setChatVisible] = useState(false);
     const smRef = useRef(null);
     const lgRef = useRef(null);
     const xlRef = useRef(null);
 
-    const [isMobile, setIsMobile] = useState(false); // Below 'md' breakpoint
-    const [isDesktop, setIsDesktop] = useState(false); // Between 'md' and 'lg'
-    const [isXL, setIsXL] = useState(false); // Above 'lg' breakpoint
+    const [isMobile, setIsMobile] = useState(false);
+    const [isDesktop, setIsDesktop] = useState(false);
+    const [isXL, setIsXL] = useState(false);
 
-    const toggleBrowserVisibility = (index: number) => {
-        const updatedBrowsers = [...currentBrowsers];
-        updatedBrowsers[index].isVisible = !updatedBrowsers[index].isVisible;
-        setCurrentBrowsers(updatedBrowsers);
-    }
+    const [chatVisible, setChatVisible] = useState(true);
+    const [releaseVisible, setReleaseVisible] = useState(true);
+    const [vidsVisible, setVidsVisible] = useState(true);
 
-    useEffect(() => {
-        toggleBrowserVisibility(0); // Show the first browser immediately
-    }, []);
-
-    useEffect(() => {
-        let timeouts: NodeJS.Timeout[] = []; 
+    // useEffect(() => {
+    //     let timeouts: NodeJS.Timeout[] = []; 
+    //     // Start from the second browser
+    //     for (let index = 1; index < currentBrowsers.length; index++) {
+    //         const timer = setTimeout(() => {
+    //             toggleBrowserVisibility(index);
+    //         }, index * 30);  
     
-        // Start from the second browser
-        for (let index = 1; index < currentBrowsers.length; index++) {
-            const timer = setTimeout(() => {
-                toggleBrowserVisibility(index);
-            }, index * 30);  
+    //         timeouts.push(timer);
+    //     }
     
-            timeouts.push(timer);
-        }
-    
-        return () => {
-            timeouts.forEach(timer => clearTimeout(timer));
-        };
-    }, []);
+    //     return () => {
+    //         timeouts.forEach(timer => clearTimeout(timer));
+    //     };
+    // }, []);
     
     useEffect(() => {
         const checkSize = () => {
@@ -81,7 +70,6 @@ const Browsers = () => {
         };
     }, []);
 
-
     useEffect(() => {
         function handleDocumentClick(event: MouseEvent) {
             if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
@@ -94,21 +82,56 @@ const Browsers = () => {
         };
     }, []);
 
+    useEffect(() => {
+        console.log('Chat Visible:', chatVisible);
+        console.log('Release Visible:', releaseVisible);
+        console.log('Vids Visible:', vidsVisible);
+    }, [chatVisible, releaseVisible, vidsVisible]);
+
+    const handleRedirect = async () => {
+        try {
+            const response = await fetch('/api/mailto', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              }
+            });
+          } catch (error) {
+            console.error("Error while sending mail", error);
+          }
+    }
+
     const MobileVersion = ({ items, selectedItem, setSelectedItem, toggleBrowserVisibility }: any) => (
         items.map((item: any, index: any) => (
             // <Link href={`${item.link}`}>
                 <div 
-                    className={`cursor-grab flex items-center justify-center gap-x-[20px] md:absolute md:h-auto md:w-auto`}
+                    className={`cursor-grab flex items-center justify-center gap-x-[20px] mb-[10px] md:absolute md:h-auto md:w-auto`}
+
                     style={{ 
                         left: item.positionleft, 
                         top: item.positiontop, 
                         right: item.positionright, 
                         bottom: item.positionbottom 
                     }}
+
                     onClick={(e) => {
-                        e.preventDefault();  // Prevent default navigation
-                        if (item.link === '/message') {
-                            setChatVisible(true); // Set chat to visible when the message icon is clicked
+                        e.preventDefault();
+                        console.log('Icon clicked:', item.linkedBrowser);
+
+                        if (selectedItem === index) {
+                          setSelectedItem(null);
+                        } else {
+                          setSelectedItem(index);
+                        }
+                    
+                        if(item.linkedBrowser === 0) {
+                          setVidsVisible(prevState => !prevState);
+                        } else if(item.linkedBrowser === 1) {
+                          setChatVisible(prevState => !prevState);
+                        } else if(item.linkedBrowser === 2) {
+                          setReleaseVisible(prevState => !prevState);
+                        } else if(item.linkedBrowser === 3) {
+                          window.location.href = 'mailto:email@yahoo.com'; 
                         }
                     }}
                 >
@@ -124,39 +147,14 @@ const Browsers = () => {
         );
 
     return (
-        <div id="main-bounds" className="h-screen w-screen relative p-4">
+        <div id="main-bounds" className={`${isMobile ? 'w-screen h-screen flex flex-col p-4 overflow-x-hidden' : 'h-screen w-screen relative p-4'}`}>
             <div ref={smRef} className="hidden md:block"></div>
             <div ref={lgRef} className="hidden lg:block"></div>
             <div ref={xlRef} className="hidden xl:block"></div>
             
             {isMobile ? (
                 <div className='flex justify-between px-5'>
-                    <MobileVersion items={draggableItems} selectedItem={selectedItem} setSelectedItem={setSelectedItem} toggleBrowserVisibility={toggleBrowserVisibility} />
-                    <div style={{ 
-                        position: 'fixed',
-                        top: 0,
-                        bottom: 0,
-                        right: isChatVisible ? 0 : '-100%', // Slide in from the right
-                        width: '100%',
-                        height: '100%',
-                        transition: 'right 0.3s ease-in-out', // Apply transition effect // Ensure it overlays other content
-                        backgroundColor: 'black'
-                    }} className='w-full h-full z-30'>
-
-                        {/* Close button to hide the chat */}
-                        <button 
-                            onClick={() => setChatVisible(false)}
-                            style={{ position: 'absolute', top: 80, left: 20 }}
-                            className='text-white'    
-                        >
-                            Close
-                        </button>
-
-                        {/* Here's where the chat component would go */}
-                        <div className='w-screen h-screen py-5'>
-                            <Chat />
-                        </div>
-                    </div>
+                    <MobileVersion items={draggableItems} selectedItem={selectedItem} setSelectedItem={setSelectedItem} />
                 </div>
             ) : (
                 draggableItems.map((item, index) => (
@@ -170,19 +168,30 @@ const Browsers = () => {
                                 bottom: item.positionbottom 
                             }}
                             onClick={(e) => {
-                                e.stopPropagation();
+                                e.preventDefault();
+
+                                console.log('Icon clicked:', item.linkedBrowser);
+        
                                 if (selectedItem === index) {
-                                    setSelectedItem(null);
+                                  setSelectedItem(null);
                                 } else {
-                                    setSelectedItem(index);
+                                  setSelectedItem(index);
+                                }
+                            
+                                if(item.linkedBrowser === 0) {
+                                  setVidsVisible(prevState => !prevState);
+                                } else if(item.linkedBrowser === 1) {
+                                  setChatVisible(prevState => !prevState);
+                                } else if(item.linkedBrowser === 2) {
+                                  setReleaseVisible(prevState => !prevState);
+                                } else if(item.linkedBrowser === 3) {
+                                  window.location.href = 'mailto:email@yahoo.com'; 
                                 }
                             }}
                             onDoubleClick={(e) => {
                                 e.stopPropagation();
-                                if (typeof item.linkedBrowser === 'number') {
-                                    toggleBrowserVisibility(item.linkedBrowser);
-                                }
                             }}
+                            
                         >
                             <FileIcon 
                                 iconSrc={item.iconSrc}
@@ -194,73 +203,41 @@ const Browsers = () => {
                     </Draggable>
                 ))
             )}
-            {isMobile ? (
-                <>
-                    {currentBrowsers.map((browser, index) => (
-                        (browser.showOnMobile !== false || !isMobile) && browser.isVisible && (
-                            <div 
-                                className={`flex mt-10 w-full`} 
-                                style={{ 
-                                    zIndex: activeBrowser === browser.zIndex ? 10 : 1, 
-                                    left: isMobile ? '' : isDesktop ? '' : isXL ? browser.positionleftxl : browser.positionleft,
-                                    top: isMobile ? '' : isDesktop ? '' : isXL ? browser.positiontopxl : browser.positiontop,
-                                    right: isMobile ? '': isDesktop ? '' : isXL ? browser.positionrightxl : browser.positionright,
-                                    bottom: isMobile ? '' : isDesktop ? '' : isXL ? browser.positionrightxl : browser.positionright
-                                }}
-                            >
-                                <Browser bgColor={browser.bgColor} secondaryColor={browser.secondaryColor} bHeight={browser.bHeight} bWidth={browser.bWidth} hHeight={browser.hHeight} toggleVisibility={() => toggleBrowserVisibility(index)}>
-                                    {browser.content}
-                                </Browser>
-                            </div>
-                        )
-                    ))}
-                </>
-            ) : (
-                <>
-                    {currentBrowsers.map((browser, index) => (
-                        browser.isVisible && (
-                            <Draggable 
-                                key={index} 
-                                bounds="#main-bounds" 
-                                handle=".drag-handle" 
-                                onStart={() => setActiveBrowser(browser.zIndex)}
-                            >
-                                <div 
-                                    className={`cursor-grab absolute ${isMobile ? 'hidden-on-mobile' : ''}`} 
-                                    style={{ 
-                                        zIndex: activeBrowser === browser.zIndex ? 10 : 1, 
-                                        left: isMobile ? '' : isDesktop ? '' : isXL ? browser.positionleftxl : browser.positionleft,
-                                        top: isMobile ? '' : isDesktop ? '' : isXL ? browser.positiontopxl : browser.positiontop,
-                                        right: isMobile ? '' : isDesktop ? '' : isXL ? browser.positionrightxl : browser.positionright,
-                                        bottom: isMobile ? '' : isDesktop ? '' : isXL ? browser.positionrightxl : browser.positionright
-                                    }}
-                                >
-                                    <Browser bgColor={browser.bgColor} secondaryColor={browser.secondaryColor} bHeight={browser.bHeight} bWidth={browser.bWidth} hHeight={browser.hHeight} toggleVisibility={() => toggleBrowserVisibility(index)}>
-                                        {browser.content}
-                                    </Browser>
-                                </div>
-                            </Draggable>
-                        )
-                    ))}
-                </>
-            )}
+
+
+            <div className={`${isMobile ? 'flex flex-col justify-center gap-y-5' : isXL ? '' : ''}`}>
+
+                {/* Chat Window */}
+                {chatVisible && (
+                    <Draggable bounds="#main-bounds" handle=".drag-handle" >
+                        <div className={`${isMobile ? 'flex'  : isXL ? 'absolute top-1/4 left-1/4 transform -translate-x-1/2 -translate-y-1/2 z-50' : 'absolute top-1/4 left-1/3 transform -translate-x-1/2 -translate-y-1/2 z-50'}`}>
+                            <Chat setChatVisible={setChatVisible} />
+                        </div>
+                    </Draggable>
+                )}
+
+                {/* Release Window */}
+                {releaseVisible && (
+                    <Draggable bounds="#main-bounds" handle=".drag-handle">
+                        <div className={`${isMobile ? 'flex'  : isXL ? 'absolute left-[25px]' : 'absolute left-[140px] top-[10px]'}`}>
+                            <Release setReleaseVisible={setReleaseVisible} />
+                        </div>
+                    </Draggable>
+                )}
+
+                {/* Video Window */}
+                {vidsVisible && (
+                    <Draggable bounds="#main-bounds" handle=".drag-handle">
+                        <div className={`${isMobile ? 'flex'  : isXL ? 'absolute right-[25px] bottom-[25px]' : 'absolute right-[140px] bottom-[25px]'}`}>
+                            <Vids setVidsVisible={setVidsVisible} />
+                        </div>
+                    </Draggable>
+                )}
+
+            </div>
+
         </div>
     );
 }
 
 export default Browsers;
-
-// -----------------------------------------------------------------------------------------------------------------------------------------------------------
-
-{/* <Draggable 
-    bounds="#main-bounds" 
-    handle=".drag-handle" 
-    onStart={() => setActiveBrowser(3)}
->
-    <div 
-        className='absolute top-[55px] right-[100px]' 
-        style={{ zIndex: activeBrowser === 3 ? 10 : 1 }}
-    >
-        <SingleBrowser bgColor="#000" secondaryColor="#3D3E44" />
-    </div>
-</Draggable> */}

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 const Topbar = () => {
-  const [location, setLocation] = useState('San Diego, CA');
+  const [location, setLocation] = useState('');
   const [dateTime, setDateTime] = useState({
     date: 'Fri 25 Aug',
     time: '01:26AM'

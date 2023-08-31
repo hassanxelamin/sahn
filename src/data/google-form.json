@@ -3,30 +3,36 @@
   "pageHistory": 0,
   "fbzx": "3222321682144591085",
   "action": "e/1FAIpQLScn15yofNsdu9WdlGidoiC9FQosOrTAjPPVsB5NGBtnc3YKrg",
-  "title": null,
-  "description": null,
+  "title": "",
+  "description": "",
   "fields": [
     {
       "label": "WHERE DO YOU WANT TO GO?",
-      "description": null,
-      "type": "LONG_ANSWER",
-      "id": "818006747",
-      "required": false
+      "description": "",
+      "type": "SHORT_ANSWER",
+      "id": "1234567891",
+      "required": false,
+      "options": [], 
+      "legend": ""    
     },
     {
       "label": "WHAT DO YOU NEED TO GET THERE?",
-      "description": null,
-      "type": "LONG_ANSWER",
-      "id": "1396674458",
-      "required": false
+      "description": "",
+      "type": "SHORT_ANSWER",
+      "id": "1234567892",
+      "required": false,
+      "options": [], 
+      "legend": "" 
     },
     {
       "label": "WHAT ARE YOU WAITING FOR?",
-      "description": null,
-      "type": "LONG_ANSWER",
-      "id": "1076368914",
-      "required": false
+      "description": "",
+      "type": "SHORT_ANSWER",
+      "id": "1234567893",
+      "required": false,
+      "options": [], 
+      "legend": "" 
     }
   ],
-  "fieldsOrder": { "818006747": 0, "1076368914": 2, "1396674458": 1 }
+  "fieldsOrder": { "1234567891": 0, "1234567892": 2, "1234567893": 1 }
 }

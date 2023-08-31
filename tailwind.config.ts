@@ -21,10 +21,14 @@ const config: Config = {
         'sk': ['SK', 'helvetica', 'sans-serif'],
         'vcr': ['VCR', 'helvetica', 'sans-serif'],
         'styrene': ['Styrene', 'helvetica', 'sans-serif'],
+        'gotham': ['Gotham', 'helvetica', 'sans-serif'],
       },
       backgroundColor: {
         'custom-blue': 'rgba(48, 49, 49, 0.2)',
       },
+      boxShadow: {
+        'exact': '0px 16px 48px rgba(0, 0, 0, 0.3)',
+      } 
     },
   },
   plugins: [],

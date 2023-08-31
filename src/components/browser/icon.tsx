@@ -22,9 +22,6 @@ const FileIcon = ({
     labelText,
     selected
 }: PropTypes & { selected: boolean }) => { 
-    const [visible, setVisible] = useState(true);
-
-    if (!visible) return null; 
 
     return (
         <motion.div 
