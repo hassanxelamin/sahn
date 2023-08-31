@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import NextImage from 'next/image';
+import Link from 'next/link';
 
 const fadeIn = {
   initial: { opacity: 0, scale: 0.9 },
@@ -46,37 +47,46 @@ const Release = ({ setReleaseVisible }: ChatProps) => {
               </div>
               <div className='flex gap-x-8'>
                 <div className='cursor-pointer'>
+                <Link href='https://open.spotify.com/track/4Z96FgpOciDU26IumkHLnU?si=fb6d1d7882124aa4'>
                     <NextImage 
                       src='/music/spotify.png'
                       alt='spotify'
                       width={30}
                       height={30}
                     />
+                  </Link>
                 </div>
                 <div className='cursor-pointer'>
+                <Link href='https://music.apple.com/gb/album/a-thousand-miles-single/1703436931'>
                   <NextImage 
                     src='/music/apple.png'
                     alt='apple'
                     width={30}
                     height={30}
                   />
+                  </Link>
                 </div>
                 <div className='cursor-pointer'>
+                <Link href='https://soundcloud.com/sahnn/a-thousand-miles-prod'>
                   <NextImage 
                     src='/music/soundcloud.png'
                     alt='soundcloud'
                     width={30}
                     height={30}
                   />
+                  </Link>
                 </div>
                 <div className='cursor-pointer'>
+                <Link href='https://www.youtube.com/watch?v=W7IV3qRl9sc&ab_channel=sahn'>
                   <NextImage 
                     src='/music/youtube.png'
                     alt='youtube'
                     width={30}
                     height={30}
                   />
+                  </Link>
                 </div>
+              
               </div>
             </div>
           </div>

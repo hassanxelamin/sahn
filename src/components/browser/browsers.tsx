@@ -8,6 +8,7 @@ import { draggableItems } from '@/src/constants/ui';
 import Chat from '@/src/components/browser/chat/chat';
 import Release from '@/src/components/browser/release/release';
 import Vids from '@/src/components/browser/vids/vids';
+import ReleaseMobile from './release/release-mobile';
 
 const Browsers = () => {
     const [activeBrowser, setActiveBrowser] = useState<number | null>(null);
@@ -225,7 +226,7 @@ const Browsers = () => {
                 {releaseVisible && (
                     isMobile ? 
                     (<div className='flex'>
-                        <Release setReleaseVisible={setReleaseVisible} />
+                        <ReleaseMobile setReleaseVisible={setReleaseVisible} />
                     </div>)
                     : 
                     (<Draggable bounds="#main-bounds" handle=".drag-handle">

@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import NextImage from 'next/image';
+import Link from 'next/link';
 
 const fadeIn = {
   initial: { opacity: 0, scale: 0.9 },
@@ -13,7 +14,7 @@ interface ChatProps {
   setReleaseVisible: (value: boolean | ((prevState: boolean) => boolean)) => void;
 }
 
-const Release = ({ setReleaseVisible }: ChatProps) => {
+const ReleaseMobile = ({ setReleaseVisible }: ChatProps) => {
 
   return (
     <motion.div 
@@ -31,9 +32,9 @@ const Release = ({ setReleaseVisible }: ChatProps) => {
                 <div className={`w-[1.2rem] h-[1.2rem] bg-green-400 rounded-full cursor-pointer`}></div>
             </div>
         </div>
-        <div className='flex items-center justify-between w-full h-full px-20'>
+        <div className='flex items-center justify-between w-full h-full px-10'>
           <div className='flex flex-col items-center gap-y-5'>
-            <div className='w-[100px] h-[100px] rounded-[10px] bg-white overflow-hidden'>
+            <div className='w-[150px] h-[150px] rounded-[10px] bg-white overflow-hidden'>
             <img src="/images/thousand.jpg" alt='profile picture' />
             </div>
           </div>
@@ -46,36 +47,44 @@ const Release = ({ setReleaseVisible }: ChatProps) => {
               </div>
               <div className='flex gap-x-8'>
                 <div className='cursor-pointer'>
+                    <Link href='https://open.spotify.com/track/4Z96FgpOciDU26IumkHLnU?si=fb6d1d7882124aa4'>
+                        <NextImage 
+                        src='/music/spotify.png'
+                        alt='spotify'
+                        width={30}
+                        height={30}
+                        />
+                    </Link>
+                </div>
+                <div className='cursor-pointer'>
+                  <Link href='https://music.apple.com/gb/album/a-thousand-miles-single/1703436931'>
                     <NextImage 
-                      src='/music/spotify.png'
-                      alt='spotify'
-                      width={20}
-                      height={20}
+                        src='/music/apple.png'
+                        alt='apple'
+                        width={30}
+                        height={30}
                     />
+                  </Link>
                 </div>
                 <div className='cursor-pointer'>
-                  <NextImage 
-                    src='/music/apple.png'
-                    alt='apple'
-                    width={20}
-                    height={20}
-                  />
+                <Link href='https://soundcloud.com/sahnn/a-thousand-miles-prod'>
+                    <NextImage 
+                        src='/music/soundcloud.png'
+                        alt='soundcloud'
+                        width={30}
+                        height={30}
+                    />
+                </Link>
                 </div>
                 <div className='cursor-pointer'>
-                  <NextImage 
-                    src='/music/soundcloud.png'
-                    alt='soundcloud'
-                    width={20}
-                    height={20}
-                  />
-                </div>
-                <div className='cursor-pointer'>
+                <Link href='https://www.youtube.com/watch?v=W7IV3qRl9sc&ab_channel=sahn'>
                   <NextImage 
                     src='/music/youtube.png'
                     alt='youtube'
-                    width={20}
-                    height={20}
+                    width={30}
+                    height={30}
                   />
+                </Link>
                 </div>
               </div>
             </div>
@@ -85,4 +94,4 @@ const Release = ({ setReleaseVisible }: ChatProps) => {
   )
 }
 
-export default Release;
+export default ReleaseMobile;
